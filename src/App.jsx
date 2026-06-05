@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchPodcasts } from "./api/fetchPodcasts";
-import PodcastCard from "./components/PodcastCard";
+import PodcastGrid from "./components/PodcastGrid";
 
 /**
  * The main application component.
@@ -58,9 +58,7 @@ function App() {
 
   return (
     <main>
-      {podcasts.map((podcast) => (
-        <PodcastCard key={podcast.id} podcast={podcast} />
-      ))}
+      <PodcastGrid podcasts={podcasts} />
     </main>
   );
 }

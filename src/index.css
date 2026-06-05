@@ -1,3 +1,5 @@
+/* Podcast Card Content Styling */
+
 .podcast-card {
   background: #ffffff;
   border-radius: 1rem;
@@ -38,4 +40,24 @@
   border-radius: 999px;
   background-color: #f3f4f6;
   font-size: 0.75rem;
+}
+
+/* Podcast Grid Layout Styling */
+
+.podcast-grid {
+  display: grid;
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .podcast-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .podcast-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
