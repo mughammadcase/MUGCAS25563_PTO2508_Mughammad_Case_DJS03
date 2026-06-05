@@ -5,7 +5,7 @@ import { genres } from "../data.js";
  *
  * @principle SRP - Single Responsibility Principle: Only responsible for mapping genre IDs to names.
  */
-export const GenreService = {
+export const genreService = {
   /**
    * Converts array of genre IDs to their corresponding genre titles.
    * @param {number[]} genreIds - Array of genre IDs.
