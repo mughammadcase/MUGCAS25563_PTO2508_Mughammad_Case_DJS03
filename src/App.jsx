@@ -18,6 +18,7 @@ function App() {
   useEffect(() => {
     async function loadPodcasts() {
       try {
+        // await new Promise((resolve) => setTimeout(resolve, 2000));
         const data = await fetchPodcasts();
         setPodcasts(data);
       } catch (err) {
@@ -30,39 +31,35 @@ function App() {
     loadPodcasts();
   }, []);
 
-  if (loading) {
-    return (
-      <div className="message-container">
-        <div className="spinner"></div> <p>Loading podcasts...</p>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="message-container">
-        <div className="error">
-          Error occurred while trying to fetch podcasts: {error}
-        </div>
-      </div>
-    );
-  }
-
-  // Handle case if no podcasts are returned
-  if (!loading && podcasts.length === 0) {
-    return (
-      <div className="message-container">
-        <p>No podcasts available.</p>
-      </div>
-    );
-  }
-
   return (
     <>
       <Header />
 
       <main>
-        <PodcastGrid podcasts={podcasts} />
+        {loading && (
+          <div className="message-container">
+            <div className="spinner"></div>
+            <p>Loading podcasts...</p>
+          </div>
+        )}
+
+        {error && (
+          <div className="message-container">
+            <div className="error">
+              Error occurred while trying to fetch podcasts: {error}
+            </div>
+          </div>
+        )}
+
+        {!loading && !error && podcasts.length === 0 && (
+          <div className="message-container">
+            <p>No podcasts available.</p>
+          </div>
+        )}
+
+        {!loading && !error && podcasts.length > 0 && (
+          <PodcastGrid podcasts={podcasts} />
+        )}
       </main>
     </>
   );
