@@ -1,3 +1,4 @@
+import Header from "./components/Header";
 import { useEffect, useState } from "react";
 import { fetchPodcasts } from "./api/fetchPodcasts";
 import PodcastGrid from "./components/PodcastGrid";
@@ -57,9 +58,13 @@ function App() {
   }
 
   return (
-    <main>
-      <PodcastGrid podcasts={podcasts} />
-    </main>
+    <>
+      <Header />
+
+      <main>
+        <PodcastGrid podcasts={podcasts} />
+      </main>
+    </>
   );
 }
 
