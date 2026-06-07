@@ -1,13 +1,15 @@
 /**
- * Date Formatter - Utility function for date formatting.
+/**
+ * Utility for formatting podcast update dates into a human-readable format.
  *
- * @principle SRP - Single Responsibility Principle: This module only formats dates and does not handle any unrelated logic.
+ * @module formatDate
  */
 export const formatDate = {
   /**
-   * Formats a date string into a human-readable format.
-   * @param {string} dateStr - ISO date string.
-   * @returns {string} Formatted date string.
+   * Converts an ISO date string into a readable date format.
+   *
+   * @param {string} dateStr - ISO date string received from the podcast API.
+   * @returns {string} Formatted date string prefixed with "Updated".
    */
   format(dateStr) {
     const date = new Date(dateStr);

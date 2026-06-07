@@ -4,11 +4,14 @@ import { fetchPodcasts } from "./api/fetchPodcasts";
 import PodcastGrid from "./components/PodcastGrid";
 
 /**
- * The main application component.
+ * Main application component.
  *
- * Fetches podcast data  and renders loading, error, and podcast states.
+ * Responsible for:
+ * - Fetching podcast data when the application loads
+ * - Managing loading, error, and podcast state
+ * - Rendering the appropriate UI based on the current application state
  *
- * @returns {JSX.Element} application UI
+ * @returns {JSX.Element} The application UI
  */
 function App() {
   const [podcasts, setPodcasts] = useState([]);
