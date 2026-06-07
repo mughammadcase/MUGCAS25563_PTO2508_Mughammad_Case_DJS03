@@ -1,75 +1,202 @@
-# DJS03: React Podcast Landing Page
+# Podcast App
 
-## Overview
+## Project Overview
 
-In this project, you will build the landing page for a podcast discovery app using **React**. Your goal is to fetch podcast data from an external API and dynamically render a **responsive grid of podcast previews**. This project focuses on **data fetching**, **component structure**, **rendering logic**, and **layout styling**.
+Podcast App is a React built landing page that allows users to browse and discover podcasts from an external API.
 
----
+The application fetches podcast data on initial page load and displays each podcast as a preview card containing:
 
-## Core Objectives
+- Podcast cover image
+- Podcast title
+- Number of seasons
+- Associated genres
+- Last updated information
 
-- Fetch podcast data from an API: https://podcast-api.netlify.app/ on initial page load.
-- Display a loading indicator while data is being fetched, and handle errors or empty results with a clear user message.
-- Render a responsive **grid layout** of podcast previews using modular, reusable React components.
-- Pass podcast data into components via props and render each podcast card with the following:
-  - Podcast **image**
-  - Podcast **title**
-  - Number of **seasons**
-  - Associated **genre names**
-  - Formatted **last updated** date (e.g., "2 days ago")
-- Apply clean, consistent layout and styling across different screen sizes using CSS Grid or Flexbox.
-- Maintain high-quality, readable code with clear structure and **JSDoc comments** for key functions and components.
+The project focuses on React fundamentals, including component-based architecture, state management, data fetching, conditional rendering, responsive design, and reusable UI components.
 
 ---
 
-## Technical Requirements
+## Features
 
-- Use **React functional components**
-- Use the **Fetch API**
-- Use `useEffect()` to fetch data once on mount
-- Use `useState()` to manage podcast data
-- Use `.map()` to dynamically render PodcastPreviewCard components
-- Format dates using `date-fns` or a custom formatter
-
----
-
-## Responsiveness Requirements
-
-- Must look good on:
-  - Desktop (≥1200px)
-  - Tablet (~768px)
-  - Mobile (~375px)
-- Use **CSS Grid** or **Flexbox**
-- Media queries or frameworks like **Tailwind CSS** are allowed
+- Fetches podcast data from an external API
+- Loading state while data is being retrieved
+- Error handling for failed requests
+- Empty state handling
+- Responsive grid layout
+- Reusable React components
+- Genre mapping service
+- Date formatting utility
+- Accessibility improvements using ARIA attributes
 
 ---
 
-## Deliverables
+## Technologies Used
 
-- **Functional React Application**
+- React
+- JavaScript (ES6+)
+- CSS3
+- Vite
+- Fetch API
 
-  - A working React app that fetches podcast data from an external API on initial load.
-  - The app renders a grid of podcast previews using reusable components.
+---
 
-- **Loading, Error, and Empty States**
+## Project Structure
 
-  - A clear loading indicator is displayed while fetching data.
-  - Meaningful error or empty state messaging is shown if the fetch fails or returns no results.
+```
+src
+├── api
+│   └── fetchPodcasts.js
+│
+├── components
+│   ├── Header.jsx
+│   ├── PodcastCard.jsx
+│   └── PodcastGrid.jsx
+│
+├── utils
+│   ├── formatDate.js
+│   └── genreService.js
+│
+├── data.js
+├── App.jsx
+├── main.jsx
+└── index.css
+```
 
-- **Podcast Preview Card Component**
+---
 
-  - A reusable component that displays:
-    - Podcast image
-    - Podcast title
-    - Number of seasons
-    - Genre tags
-    - Last updated date in a human-readable format (e.g., "3 days ago")
+## Application Flow
 
-- **Responsive Layout**
+### 1. Application Initialisation
 
-  - Grid layout that adapts to mobile, tablet, and desktop screen sizes using responsive design principles.
+The application starts from `main.jsx`, which renders the root `App` component.
 
-- **Codebase**
-  - Clean, modular code with clearly separated components.
-  - All major functions and modules documented with **JSDoc** comments.
-  - Consistent formatting across JavaScript, JSX, HTML, and CSS files.
+### 2. Data Fetching
+
+When the application loads:
+
+- `useEffect()` runs once on mount
+- `fetchPodcasts()` retrieves podcast data from the API
+- Podcast data is stored using React state
+
+### 3. State Management
+
+The application manages three primary states:
+
+| State      | Purpose                                   |
+| ---------- | ----------------------------------------- |
+| `loading`  | Indicates data is currently being fetched |
+| `error`    | Stores API errors                         |
+| `podcasts` | Stores podcast data returned by the API   |
+
+### 4. Conditional Rendering
+
+Depending on the current state:
+
+- Loading spinner is displayed
+- Error message is displayed
+- Empty state message is displayed
+- Podcast grid is displayed
+
+### 5. Podcast Rendering
+
+The podcast collection is passed to:
+
+```jsx
+<PodcastGrid podcasts={podcasts} />
+```
+
+The grid maps over the podcast array and renders:
+
+```jsx
+<PodcastCard />
+```
+
+for each podcast.
+
+---
+
+## Component Responsibilities
+
+### App.jsx
+
+Responsible for:
+
+- Fetching data
+- Managing application state
+- Rendering loading, error, empty, and success states
+
+### PodcastGrid.jsx
+
+Responsible for:
+
+- Rendering the podcast collection
+- Creating the responsive grid layout
+
+### PodcastCard.jsx
+
+Responsible for displaying:
+
+- Podcast cover image
+- Podcast title
+- Number of seasons
+- Genres
+- Last updated date
+
+### Header.jsx
+
+Responsible for:
+
+- Top-level navigation area
+
+---
+
+## Utility Modules
+
+### genreService.js
+
+Maps genre IDs returned by the API to human-readable genre names.
+
+### formatDate.js
+
+Formats podcast update dates for display.
+
+---
+
+## Responsive Design
+
+The application is designed for:
+
+- Mobile devices (375px)
+- Tablets (768px)
+- Desktop screens (1024px)
+
+CSS Grid is used to automatically adjust the number of visible podcast cards based on screen size.
+
+---
+
+## Accessibility
+
+Accessibility improvements include:
+
+- Semantic heading structure
+- Descriptive image alt text
+- ARIA status roles for loading states
+- ARIA alert roles for error states
+- Responsive layouts for smaller screens
+
+---
+
+## Running the Project
+
+```bash
+npm install
+npm run dev
+```
+
+Then open:
+
+```
+http://localhost:5173
+```
+
+---
