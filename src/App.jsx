@@ -37,14 +37,14 @@ function App() {
 
       <main>
         {loading && (
-          <div className="message-container">
+          <div className="message-container" role="status">
             <div className="spinner"></div>
             <p>Loading podcasts...</p>
           </div>
         )}
 
         {error && (
-          <div className="message-container">
+          <div className="message-container" role="alert">
             <div className="error">
               Error occurred while trying to fetch podcasts: {error}
             </div>
@@ -52,7 +52,7 @@ function App() {
         )}
 
         {!loading && !error && podcasts.length === 0 && (
-          <div className="message-container">
+          <div className="message-container" role="alert">
             <p>No podcasts available.</p>
           </div>
         )}
